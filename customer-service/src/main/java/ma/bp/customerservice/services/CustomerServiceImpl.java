@@ -67,7 +67,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDTO> serachCustomers(String kw) {
-        return null;
+    public List<CustomerDTO> searchCustomers(String kw) {
+        List<Customer> customers = customerRepository.searchCustomers(kw);
+        List<CustomerDTO> customerDTOS = customers.stream().map(customerMapper::from).collect(Collectors.toList());
+        return customerDTOS;
     }
 }

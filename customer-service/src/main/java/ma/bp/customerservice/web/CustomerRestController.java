@@ -38,4 +38,8 @@ public class CustomerRestController {
             return ResponseEntity.internalServerError().body(new ErrorMessage(e.getMessage()));
         }
     }
+    @GetMapping("/customers/search")
+    public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword") String keyword){
+        return customerService.searchCustomers("%"+keyword+"%");
+    }
 }
